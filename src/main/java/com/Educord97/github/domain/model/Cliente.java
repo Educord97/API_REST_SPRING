@@ -29,6 +29,6 @@ public class Cliente {
 	
 	@Column(name = "fone")
 	private String telefone;
-	
+
 	
 }
