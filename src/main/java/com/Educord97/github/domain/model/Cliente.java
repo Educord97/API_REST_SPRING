@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
+
+import com.Educord97.github.domain.exception.ValidationGroups;
+import com.sun.istack.NotNull;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,6 +23,7 @@ import lombok.Setter;
 @Entity
 public class Cliente {
 
+	@javax.validation.constraints.NotNull(groups = ValidationGroups.ClienteId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
