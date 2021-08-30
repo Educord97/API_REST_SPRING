@@ -1,15 +1,13 @@
 package com.Educord97.github.domain.service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Educord97.github.domain.exception.NegocioException;
 import com.Educord97.github.domain.model.Cliente;
 import com.Educord97.github.domain.model.Entrega;
 import com.Educord97.github.domain.model.StatusEntrega;
-import com.Educord97.github.domain.repository.ClienteRepository;
 import com.Educord97.github.domain.repository.EntregaRepository;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +25,7 @@ public class SolicitacaoEntregaService {
 		
 		entrega.setCliente(cliente);
 		entrega.setStatus(StatusEntrega.PENDENTE);
-		entrega.setDataPedido(LocalDateTime.now());
+		entrega.setDataPedido(OffsetDateTime.now());
 		
 		return entregaRepository.save(entrega);
 		
