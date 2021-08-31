@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.Educord97.github.api.model.EntregaModel;
+import com.Educord97.github.api.model.input.EntregaInput;
 import com.Educord97.github.domain.model.Entrega;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +28,10 @@ public class EntregaMapper {
 				.map(this::toModel)
 				.collect(Collectors.toList());
 		
+	}
+	
+	public Entrega toEntity(EntregaInput entregaInput) {
+		return modelMapper.map(entregaInput, Entrega.class);
 	}
 
 }

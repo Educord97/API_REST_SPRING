@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Educord97.github.api.mapper.EntregaMapper;
 import com.Educord97.github.api.model.EntregaModel;
+import com.Educord97.github.api.model.input.EntregaInput;
 import com.Educord97.github.domain.model.Entrega;
 import com.Educord97.github.domain.repository.EntregaRepository;
 import com.Educord97.github.domain.service.SolicitacaoEntregaService;
@@ -34,8 +34,10 @@ public class EntregaController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public EntregaModel solicitar(@Valid @RequestBody Entrega entrega) {
-		Entrega entregaSolicitada = solicitacaoEntregaService.solicitar(entrega);
+	public EntregaModel solicitar(@Valid @RequestBody EntregaInput entregaInput) {
+		Entrega novaEntrega = entregaMapper.toEntity(entregaInput);
+		Entrega entregaSolicitada = solicitacaoEntregaService.solicitar(novaEntrega);
+		
 		return  entregaMapper.toModel(entregaSolicitada);
 	}
 	
