@@ -23,7 +23,6 @@ import lombok.Setter;
 @Entity
 public class Cliente {
 
-	@javax.validation.constraints.NotNull(groups = ValidationGroups.ClienteId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
