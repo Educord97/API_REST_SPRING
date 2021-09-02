@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
+import com.Educord97.github.domain.exception.NegocioException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.sun.istack.NotNull;
@@ -65,4 +66,35 @@ public class Entrega {
 		return ocorrencia;
 	}
 
+	public void finalizar() {
+		if(naoPodeSerFinalizada()) {
+			throw new NegocioException("Entrega não pode ser finalizada!");
+		}
+		
+		setStatus(StatusEntrega.FINALIZADA);
+		setDataFinalizacao(OffsetDateTime.now());
+	}
+	
+	public boolean podeSerFinalizada() {
+		return StatusEntrega.PENDENTE.equals(getStatus());
+	}
+	
+	public boolean naoPodeSerFinalizada() {
+		return !podeSerFinalizada();
+	}
+	
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
